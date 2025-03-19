@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Potes da Libertadores 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .pot-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    .pot {
+      width: 30%;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .pot h2 {
+      margin-bottom: 10px;
+    }
+    .team-list {
+      list-style: none;
+      padding: 0;
+    }
+    .team-item {
+      padding: 8px;
+      background-color: #f8f8f8;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .team-item:hover {
+      background-color: #d3d3d3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Potes da Libertadores 2025</h1>
+
+  <div class="pot-container">
+    <div class="pot" id="pot1">
+      <h2>Pote 1</h2>
+      <ul class="team-list">
+        <li class="team-item" onclick="alterarTime('Pot 1', 1)">Time 1</li>
+        <li class="team-item" onclick="alterarTime('Pot 1', 2)">Time 2</li>
+        <li class="team-item" onclick="alterarTime('Pot 1', 3)">Time 3</li>
+      </ul>
+    </div>
+    
+    <div class="pot" id="pot2">
+      <h2>Pote 2</h2>
+      <ul class="team-list">
+        <li class="team-item" onclick="alterarTime('Pot 2', 1)">Time 4</li>
+        <li class="team-item" onclick="alterarTime('Pot 2', 2)">Time 5</li>
+        <li class="team-item" onclick="alterarTime('Pot 2', 3)">Time 6</li>
+      </ul>
+    </div>
+
+    <div class="pot" id="pot3">
+      <h2>Pote 3</h2>
+      <ul class="team-list">
+        <li class="team-item" onclick="alterarTime('Pot 3', 1)">Time 7</li>
+        <li class="team-item" onclick="alterarTime('Pot 3', 2)">Time 8</li>
+        <li class="team-item" onclick="alterarTime('Pot 3', 3)">Time 9</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function alterarTime(pote, numero) {
+      const novoNome = prompt(`Digite o novo nome do time para ${pote} - Time ${numero}:`);
+      if (novoNome) {
+        const potElement = document.getElementById(pote.toLowerCase());
+        const teamElement = potElement.querySelectorAll('.team-item')[numero - 1];
+        teamElement.textContent = novoNome;
+      }
+    }
+  </script>
+
+</body>
+</html>
