@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas dos Times</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            border: 5px solid white;
+            margin: auto;
+            width: 70%;
+            padding: 20px;
+            position: relative;
+        }
+        h1 {
+            font-family: cursive;
+            font-size: 2em;
+            color: gold;
+            position: absolute;
+            top: 10px;
+            width: 100%;
+        }
+        .team {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 100px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px;
+            cursor: pointer;
+            position: relative;
+            border-radius: 5px;
+        }
+        .botafogo {
+            background-color: black;
+            border: 2px solid white;
+        }
+        .botafogo::before {
+            content: '\2605'; /* Estrela branca */
+            color: white;
+            font-size: 40px;
+            margin-right: 10px;
+        }
+        .carabobo {
+            background-color: darkred;
+        }
+        .la-u-chile {
+            background-color: blue;
+            border: 3px solid white;
+            color: red;
+        }
+        .estudiantes {
+            display: flex;
+            background-color: white;
+            border: 3px solid gray;
+            color: black;
+        }
+        .estudiantes::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 100%;
+            background-color: red;
+            margin: 0 5px;
+        }
+        .stats {
+            display: none;
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border: 2px solid white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+        }
+        .stats h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .stats p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Libertadores 2025</h1>
+        <div class="team botafogo" onclick="showStats('Botafogo')">Botafogo</div>
+        <div class="team carabobo" onclick="showStats('Carabobo')">Carabobo</div>
+        <div class="team la-u-chile" onclick="showStats('La U Chile')">La U Chile</div>
+        <div class="team estudiantes" onclick="showStats('Estudiantes')">Estudiantes</div>
+    </div>
+    <div id="stats" class="stats"></div>
+
+    <script>
+        const statsData = {
+            "Carabobo": `Partidas: 8<br>Gols marcados: 10<br>Gols sofridos: 7<br>Assistências: 8<br>...`,
+            "Estudiantes": `Partidas: 10<br>Gols marcados: 15<br>Gols sofridos: 9<br>Assistências: 12<br>...`,
+            "La U Chile": `Partidas: 9<br>Gols marcados: 13<br>Gols sofridos: 8<br>Assistências: 10<br>...`
+        };
+        
+        function showStats(team) {
+            const statsDiv = document.getElementById('stats');
+            statsDiv.innerHTML = `<h2>${team}</h2><p>${statsData[team]}</p>`;
+            statsDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
