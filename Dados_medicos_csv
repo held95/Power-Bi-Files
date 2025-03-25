@@ -1,0 +1,166 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPyWrIr9g4oerjJMXcIUF6y",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/held95/Power-Bi-Files/blob/main/Dados_medicos_csv\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 106
+        },
+        "id": "Ed2F-F_rnL86",
+        "outputId": "aaaac815-6e5a-43f1-f3f3-5f8dca643eae"
+      },
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "invalid syntax (<ipython-input-3-622bf8efb100>, line 45)",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-3-622bf8efb100>\"\u001b[0;36m, line \u001b[0;32m45\u001b[0m\n\u001b[0;31m    -----------------------------horas----relacionadas----------------------------\u001b[0m\n\u001b[0m                                                                                  ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "import random\n",
+        "import os\n",
+        "\n",
+        "# Listas de dados\n",
+        "medicos = [\"Roberto\", \"Guilherme\", \"Mariana\", \"Regina\", \"Sônia\", \"Marcos\", \"Fábio\"]\n",
+        "meses = [\"NOVEMBRO\", \"DEZEMBRO\", \"JANEIRO\", \"FEVEREIRO\", \"MARÇO\"]\n",
+        "casos = [\"Demanda Espontânea\", \"Cirurgia\", \"Exame Rotina\", \"Encaminhamento\"]\n",
+        "\n",
+        "# Criando lista para armazenar os dados\n",
+        "dados_medicos = []\n",
+        "\n",
+        "# Gerando 200 registros fictícios\n",
+        "for _ in range(200):\n",
+        "    medico = random.choice(medicos)\n",
+        "    mes = random.choice(meses)\n",
+        "    caso = random.choice(casos)\n",
+        "\n",
+        "    dados_medicos.append([medico, mes, caso])\n",
+        "\n",
+        "# Criando DataFrame\n",
+        "df_medicos = pd.DataFrame(dados_medicos, columns=[\"MÉDICO\", \"MÊS\", \"TIPO_CASO\"])\n",
+        "\n",
+        "# Diretório seguro para salvar o arquivo\n",
+        "diretorio_temp = os.path.join(os.path.expanduser(\"~\"), \"Downloads\")  # Alternativamente, use \"/tmp\" no Linux/macOS\n",
+        "os.makedirs(diretorio_temp, exist_ok=True)\n",
+        "\n",
+        "# Caminho do arquivo CSV\n",
+        "caminho_medicos = os.path.join(diretorio_temp, \"tabela_medicos.csv\")\n",
+        "\n",
+        "# Salvando em arquivo CSV\n",
+        "df_medicos.to_csv(caminho_medicos, index=False, sep=';', encoding='utf-8')\n",
+        "\n",
+        "# Verificação se o arquivo foi salvo corretamente\n",
+        "if os.path.exists(caminho_medicos):\n",
+        "    print(\"Arquivo CSV gerado com sucesso!\")\n",
+        "    print(f\"Arquivo salvo em: {caminho_medicos}\")\n",
+        "else:\n",
+        "    print(\"Erro ao salvar o arquivo.\")\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import random\n",
+        "import os\n",
+        "\n",
+        "# Listas de dados\n",
+        "medicos = [\"Mariana\", \"Fábio\", \"Guilherme\", \"Roberto\", \"Marcos\", \"Sônia\"]\n",
+        "meses = [\"NOVEMBRO\", \"DEZEMBRO\", \"JANEIRO\", \"FEVEREIRO\", \"MARÇO\"]\n",
+        "\n",
+        "# Funções auxiliares para gerar os dados\n",
+        "def gerar_remuneracao():\n",
+        "    return random.randint(100, 25000)\n",
+        "\n",
+        "def gerar_horas_trabalhadas():\n",
+        "    return random.choice([8, 16, 24, 32, 40, 48, 56, 64, 72])\n",
+        "\n",
+        "# Criando lista para armazenar os dados\n",
+        "dados = []\n",
+        "\n",
+        "# Gerando 200 registros fictícios\n",
+        "for _ in range(200):\n",
+        "    medico = random.choice(medicos)\n",
+        "    mes = random.choice(meses)\n",
+        "    remuneracao = gerar_remuneracao()\n",
+        "    horas_trabalhadas = gerar_horas_trabalhadas()\n",
+        "\n",
+        "    dados.append([medico, mes, remuneracao, horas_trabalhadas])\n",
+        "\n",
+        "# Criando DataFrame\n",
+        "df = pd.DataFrame(dados, columns=[\"Médico\", \"Mês\", \"Total Remunerado\", \"Total de Horas Trabalhadas\"])\n",
+        "\n",
+        "# Diretório seguro para salvar o arquivo\n",
+        "diretorio_temp = os.path.join(os.path.expanduser(\"~\"), \"Downloads\")  # Alternativamente, use \"/tmp\" no Linux/macOS\n",
+        "os.makedirs(diretorio_temp, exist_ok=True)\n",
+        "\n",
+        "# Caminho do arquivo CSV\n",
+        "caminho_arquivo = os.path.join(diretorio_temp, \"dados_medicos.csv\")\n",
+        "\n",
+        "# Salvando em arquivo CSV\n",
+        "df.to_csv(caminho_arquivo, index=False, sep=';', encoding='utf-8')\n",
+        "\n",
+        "# Verificação se o arquivo foi salvo corretamente\n",
+        "if os.path.exists(caminho_arquivo):\n",
+        "    print(\"Arquivo CSV gerado com sucesso!\")\n",
+        "    print(f\"Arquivo salvo em: {caminho_arquivo}\")\n",
+        "else:\n",
+        "    print(\"Erro ao salvar o arquivo.\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HYRKeg3arjnd",
+        "outputId": "305f7805-bde5-491b-c88b-3576b3bde521"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Arquivo CSV gerado com sucesso!\n",
+            "Arquivo salvo em: /root/Downloads/dados_medicos.csv\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
