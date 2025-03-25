@@ -1,0 +1,92 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNaoHYpShSy9GpbTEtS/InG",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/held95/Power-Bi-Files/blob/main/banco_dados_medicos_csv\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ed2F-F_rnL86",
+        "outputId": "be771799-ba1d-4bc8-9bf9-67cfa69ccf98"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Arquivo CSV gerado com sucesso!\n",
+            "Arquivo salvo em: /root/Downloads/tabela_medicos.csv\n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "import random\n",
+        "import os\n",
+        "\n",
+        "# Listas de dados\n",
+        "medicos = [\"Roberto\", \"Guilherme\", \"Mariana\", \"Regina\", \"Sônia\", \"Marcos\", \"Fábio\"]\n",
+        "meses = [\"NOVEMBRO\", \"DEZEMBRO\", \"JANEIRO\", \"FEVEREIRO\", \"MARÇO\"]\n",
+        "casos = [\"Demanda Espontânea\", \"Cirurgia\", \"Exame Rotina\", \"Encaminhamento\"]\n",
+        "\n",
+        "# Criando lista para armazenar os dados\n",
+        "dados_medicos = []\n",
+        "\n",
+        "# Gerando 200 registros fictícios\n",
+        "for _ in range(200):\n",
+        "    medico = random.choice(medicos)\n",
+        "    mes = random.choice(meses)\n",
+        "    caso = random.choice(casos)\n",
+        "\n",
+        "    dados_medicos.append([medico, mes, caso])\n",
+        "\n",
+        "# Criando DataFrame\n",
+        "df_medicos = pd.DataFrame(dados_medicos, columns=[\"MÉDICO\", \"MÊS\", \"TIPO_CASO\"])\n",
+        "\n",
+        "# Diretório seguro para salvar o arquivo\n",
+        "diretorio_temp = os.path.join(os.path.expanduser(\"~\"), \"Downloads\")  # Alternativamente, use \"/tmp\" no Linux/macOS\n",
+        "os.makedirs(diretorio_temp, exist_ok=True)\n",
+        "\n",
+        "# Caminho do arquivo CSV\n",
+        "caminho_medicos = os.path.join(diretorio_temp, \"tabela_medicos.csv\")\n",
+        "\n",
+        "# Salvando em arquivo CSV\n",
+        "df_medicos.to_csv(caminho_medicos, index=False, sep=';', encoding='utf-8')\n",
+        "\n",
+        "# Verificação se o arquivo foi salvo corretamente\n",
+        "if os.path.exists(caminho_medicos):\n",
+        "    print(\"Arquivo CSV gerado com sucesso!\")\n",
+        "    print(f\"Arquivo salvo em: {caminho_medicos}\")\n",
+        "else:\n",
+        "    print(\"Erro ao salvar o arquivo.\")\n"
+      ]
+    }
+  ]
+}
